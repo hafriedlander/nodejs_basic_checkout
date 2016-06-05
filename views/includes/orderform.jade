@@ -1,0 +1,18 @@
+div(class='row')
+  div(class='form-group col-sm-10' + (errors.order.price ? ' has-error' : ''))
+    label(class='control-label' for='order-price') Price
+    input(class='form-control' type='text' id='order-price' name='order[price]' value=data.order.price placeholder='0.00' required=true)
+    if errors.order.price
+      span(class="help-block")= errors.order.price
+  div(class='form-group col-sm-2' + (errors.order.currency ? ' has-error' : ''))
+    label(class='control-label' for='order-currency') Currency
+    select(class='form-control' id='order-currency' name='order[currency]' required=true)
+      each currency in currencies
+        option(selected=(currency == data.order.currency))= currency
+    if errors.order.currency
+      span(class="help-block")= errors.order.currency
+div(class='form-group'+ (errors.order.name ? ' has-error' : ''))
+  label(class='control-label' for='order-name') Full Name
+  input(class='form-control' type='text' id='order-name' name='order[name]' value=data.order.name autocomplete='name' required=true)
+  if errors.order.name
+    span(class="help-block")= errors.order.name

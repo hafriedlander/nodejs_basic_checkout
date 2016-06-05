@@ -1,0 +1,37 @@
+div(class='row')
+  div(class='form-group col-sm-6' + (errors.card.firstName ? ' has-error' : ''))
+    label(class='control-label' for='card-first-name') Credit Card First Name
+    input(class='form-control' type='text' id='card-first-name' name='card[firstName]' value=data.card.firstName autocomplete='cc-given-name' required=true)
+    if errors.card.firstName
+      span(class="help-block")= errors.card.firstName
+  div(class='form-group col-sm-6' + (errors.card.lastName ? ' has-error' : ''))
+    label(class='control-label' for='card-last-name') Credit Card Last Name
+    input(class='form-control' type='text' id='card-last-name' name='card[lastName]' value=data.card.lastName autocomplete='cc-family-name' required=true)
+    if errors.card.lastName
+      span(class="help-block")= errors.card.lastName
+div(class='form-group' + (errors.card.number ? ' has-error' : ''))
+  label(class='control-label' for='card-number') Credit Card Number
+  input(class='form-control' type='text' id='card-number' name='card[number]' autocomplete='cc-number' placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19" required=true)
+  if errors.card.number
+    span(class="help-block")= errors.card.number
+div(class='row')
+  div(class='form-group col-sm-4')
+    label(class='control-label' for='card-expiry') Expiry
+    div(class='row', id='card-expiry')
+      div(class="col-xs-6" + (errors.card.expMonth ? ' has-error' : ''))
+        select(class="form-control", name="card[expMonth]", autocomplete="cc-exp-month", required=true)
+         each month in months
+           option(selected=(month == data.card.expMonth))= month
+        if errors.card.expMonth
+          span(class="help-block")= errors.card.expMonth
+      div(class="col-xs-6" + (errors.card.expYear ? ' has-error' : ''))
+        select(class="form-control", name="card[expYear]", autocomplete="cc-exp-year", required=true)
+          each year in years
+            option(selected=(year == data.card.expYear))= year
+        if errors.card.expYear
+          span(class="help-block")= errors.card.expYear
+  div(class='form-group col-sm-4' + (errors.card.ccv ? ' has-error' : ''))
+    label(class='control-label' for='card-ccv') CCV
+    input(class='form-control' type='text' id='card-ccv' name='card[ccv]' autocomplete='cc-csc' placeholder="000" inputmode="numeric" minlength="3" maxlength="4" required=true)
+    if errors.card.ccv
+      span(class="help-block")= errors.card.ccv

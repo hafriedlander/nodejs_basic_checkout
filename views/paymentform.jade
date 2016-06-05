@@ -1,0 +1,12 @@
+extends ./layout.jade
+
+block content
+
+  h1 Basic Checkout
+
+  form(id='payment' method='POST' action=formURL)
+    fieldset(id='order')
+      include ./includes/orderform.jade
+    fieldset(id='credit-card')
+      include ./includes/cardform.jade
+    input(class='btn btn-default' type='submit')
